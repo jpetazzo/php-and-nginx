@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  php:
+    image: php
+    command: php -S 0.0.0.0:8000
+    working_dir: /php
+    volumes:
+    - ./php:/php
+
+  nginx:
+    image: nginx
+
+  curl:
+    image: centos
+    command: curl http://php:8000 && curl http://nginx/
+    restart: on-failure
